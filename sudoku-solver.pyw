@@ -19,12 +19,54 @@ class TitleWindow(QWidget):
             pass
 
 
+class DiffWindow(QWidget):
+    def __init__(self):
+        super(DiffWindow, self).__init__()
+        uic.loadUi("ui/diff_window.ui", self)
+
+        #selected difficulty
+        self.btn_back.clicked.connect(self.clickedBack)
+        self.btn_easy.clicked.connect(self.clickedEasy)
+        self.btn_medium.clicked.connect(self.clickedMedium)
+        self.btn_hard.clicked.connect(self.clickedHard)
+        self.btn_expert.clicked.connect(self.clickedExpert)
+        self.btn_cstm.clicked.connect(self.clickedCstm)
+
+    #Actions
+    def clickedBack(self):
+        widget.setCurrentIndex(widget.currentIndex()-1)
+    
+    def clickedEasy(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        pass
+        
+    
+    def clickedMedium(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        pass
+
+    def clickedHard(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        pass
+
+    def clickedExpert(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        pass
+    
+    def clickedCstm(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        pass
+
+
 app = QApplication([])
 widget = QStackedWidget()
 
 title_window = TitleWindow()
+diff_window = DiffWindow()
 
+#Adding the widgets to Stack
 widget.addWidget(title_window)
+widget.addWidget(diff_window)
 
 # StackedWidget Configurations
 #size
