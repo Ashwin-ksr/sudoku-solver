@@ -16,8 +16,9 @@ class TitleWindow(QWidget):
         widget.setCurrentIndex(widget.currentIndex()+1)
     
     def toQckSolv(self):
-        if self.check_quk_solv.isChecked():
-            pass
+        if self.checkBox_quk_solv.isChecked():
+            return True
+        return False
 
 
 class DiffWindow(QWidget):
@@ -172,11 +173,66 @@ class BoardWindow(QWidget):
         widget.setCurrentIndex(widget.currentIndex()-1)
 
     def clickedSolve(self):
-        self.solve()
+        if title_window.toQckSolv():
+            self.fill_brd(quick_solve.quickSol(self.brd))
+        else:
+            self.solve()
 
     def clickedClear(self):
         self.clr_brd()
 
+
+class QucikSolve():
+    def __init__(self):
+        pass
+
+    def find_empty(self, brd):
+        for i, row in enumerate(brd):
+            for j, ele in enumerate(row):
+                if ele == 0:
+                    return (i, j) 
+        return None
+    
+    def isValid(self, brd, num, pos):
+        #check horizontally
+        for col in range(9):
+            if brd[pos[0]][col] == num and  pos[1] != col:
+                return False 
+
+        #check vertically
+        for row in range(9):
+            if brd[row][pos[1]] == num and pos[0] != row :
+                return False
+
+        #check nonet
+        for row in range((pos[0]//3)*3, (pos[0]//3)*3 + 3):
+            for col in range((pos[1]//3)*3, (pos[1]//3)*3 + 3):
+                if brd[row][col] == num and (row, col) != pos:
+                    return False
+
+        return True
+
+    def solver(self, brd):
+        empty_space = self.find_empty(brd)
+        if not empty_space:
+            return True
+        else: 
+            row, col = empty_space
+
+        for i in range(1, 10):
+            if self.isValid(brd, i, (row, col)):
+                brd[row][col] = i
+
+                if self.solver(brd):
+                    return brd
+
+                brd[row][col] = 0
+
+        return False
+    
+    def quickSol(self, board):
+        self.brd = self.solver(board)
+        return self.brd
 
 
 app = QApplication([])
@@ -185,6 +241,7 @@ widget = QStackedWidget()
 title_window = TitleWindow()
 diff_window = DiffWindow()
 board_window = BoardWindow()
+quick_solve = QucikSolve()
 
 #Adding the widgets to Stack
 widget.addWidget(title_window)
