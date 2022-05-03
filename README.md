@@ -9,4 +9,4 @@ columns, rows and even in 3x3 subgrid.
 ## Solver
 
 This python program can solve any sudoku board that has a solution through backtracking method in O(n<sup>2</sup>) time.
-Custom boards can  be given via text file.
+Custom boards can be given via text file.
