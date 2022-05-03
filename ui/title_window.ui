@@ -13,6 +13,13 @@
   <property name="windowTitle">
    <string>Sudoku Solver</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/sudoku.png</normaloff>../img/sudoku.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLabel" name="label_title">
    <property name="geometry">
     <rect>
@@ -33,6 +40,9 @@
      <strikeout>false</strikeout>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff</string>
    </property>
    <property name="text">
     <string>Sudoku Solver</string>
@@ -520,8 +530,8 @@
     <font>
      <family>KacstBook</family>
      <pointsize>25</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -531,12 +541,22 @@ color: #ffffff;</string>
    <property name="text">
     <string>Play</string>
    </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/play.png</normaloff>../img/play.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
   </widget>
   <widget class="QLabel" name="label_rule1">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>290</y>
+     <y>300</y>
      <width>371</width>
      <height>30</height>
     </rect>
@@ -545,7 +565,12 @@ color: #ffffff;</string>
     <font>
      <family>KacstPen</family>
      <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff;</string>
    </property>
    <property name="text">
     <string>1. Each row must contain a unique digit.</string>
@@ -555,7 +580,7 @@ color: #ffffff;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>330</y>
+     <y>340</y>
      <width>371</width>
      <height>30</height>
     </rect>
@@ -563,7 +588,12 @@ color: #ffffff;</string>
    <property name="font">
     <font>
      <family>KacstPen</family>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff;</string>
    </property>
    <property name="text">
     <string>2. Each column must contain a unique digit.</string>
@@ -573,7 +603,7 @@ color: #ffffff;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>370</y>
+     <y>380</y>
      <width>360</width>
      <height>30</height>
     </rect>
@@ -581,7 +611,12 @@ color: #ffffff;</string>
    <property name="font">
     <font>
      <family>KacstPen</family>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff;</string>
    </property>
    <property name="text">
     <string>3. The digits can only occur once per nonet.</string>
@@ -591,7 +626,7 @@ color: #ffffff;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>240</y>
+     <y>250</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -603,6 +638,9 @@ color: #ffffff;</string>
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff;</string>
    </property>
    <property name="text">
     <string>Rules : </string>
@@ -621,7 +659,12 @@ color: #ffffff;</string>
     <font>
      <family>KacstArt</family>
      <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #a200ff;</string>
    </property>
    <property name="text">
     <string>Quick Solve</string>
