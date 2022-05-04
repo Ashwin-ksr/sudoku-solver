@@ -90,27 +90,41 @@ class BoardWindow(QWidget):
         except FileNotFoundError:
             #print("Board file is not found")
             pass
-        
     
+    def parse_crnt_brd(self):
+        crnt_brd =[]
+        for row in range(0, 9):
+            temp = []
+            for col in range(0, 9):
+                if getattr(self, "lineEdit_"+ str(row) + "x" + str(col)).text() != '':
+                    temp.append(int(getattr(self, "lineEdit_"+ str(row) + "x" + str(col)).text()))
+                else:
+                    temp.append(0)
+            crnt_brd.append(temp)
+        return crnt_brd
+
     def fill_brd(self, board):
         palette = QPalette()
-        for row in range(0, 9):
-            for col in range(0, 9):
-                if board[row][col] != 0:
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setText(str(board[row][col]))
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setAlignment(Qt.AlignCenter)
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setFont(QFont("Courier", weight= QtGui.QFont.Bold))
-                    palette.setColor(QPalette.Text, Qt.black)
-                    getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setPalette(palette)
-                    getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setReadOnly(True)
+        try:
+            for row in range(0, 9):
+                for col in range(0, 9):
+                    if board[row][col] != 0:
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setText(str(board[row][col]))
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setAlignment(Qt.AlignCenter)
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setFont(QFont("Courier", weight= QtGui.QFont.Bold))
+                        palette.setColor(QPalette.Text, Qt.black)
+                        getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setPalette(palette)
+                        getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setReadOnly(True)
 
-                else:
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setText('')
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setAlignment(Qt.AlignCenter)
-                    getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setFont(QFont("Courier", weight= QtGui.QFont.Normal))
-                    palette.setColor(QPalette.Text, Qt.red)
-                    getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setPalette(palette)
-                    getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setReadOnly(False)
+                    else:
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setText('')
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setAlignment(Qt.AlignCenter)
+                        getattr(self, "lineEdit_" + str(row) + "x" + str(col)).setFont(QFont("Courier", weight= QtGui.QFont.Normal))
+                        palette.setColor(QPalette.Text, Qt.red)
+                        getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setPalette(palette)
+                        getattr(self, "lineEdit_"+str(row)+"x"+str(col)).setReadOnly(False)
+        except TypeError:
+            print("No possible solution is found")
 
     def clr_brd(self):
         palette = QPalette()
@@ -174,7 +188,9 @@ class BoardWindow(QWidget):
 
     def clickedSolve(self):
         if title_window.toQckSolv():
-            self.fill_brd(quick_solve.quickSol(self.brd))
+            crnt_brd = self.parse_crnt_brd()
+            self.fill_brd(quick_solve.quickSol(crnt_brd))
+            self.parse_crnt_brd()
         else:
             self.solve()
 
